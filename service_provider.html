@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Become a Service Provider | CarWashPro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Reset + Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #0078d4;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #005fa3;
+    }
+
+    .btn-primary[data-aos="pulse"]:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1608136536578-5e0a2b71f3e4') no-repeat center/cover;
+      height: 90vh;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      padding: 60px 20px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .benefit-item {
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .benefit-item i {
+      font-size: 2rem;
+      color: #0078d4;
+      margin-bottom: 10px;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 60px 20px;
+      background: #0078d4;
+      color: white;
+      text-align: center;
+    }
+
+    .testimonial-slider {
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      padding: 20px;
+    }
+
+    .testimonial-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 350px;
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .testimonial-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-item p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-item span {
+      font-weight: bold;
+    }
+
+    /* Steps Section */
+    .steps {
+      background: #0078d4;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .step-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .step {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .step .number {
+      font-size: 2rem;
+      background: white;
+      color: #0078d4;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    /* Form Section */
+    .form-section {
+      padding: 60px 20px;
+      background: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .provider-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-row label {
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .provider-form input,
+    .provider-form textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    .footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Media Queries */
+    @media (min-width: 768px) {
+      .step-grid {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero" data-aos="fade-in" data-aos-duration="1500">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Grow Your Car Wash Business</h1>
+      <p>Join CarWashPro to get more bookings, better tools, and zero hassle.</p>
+      <a href="#form" class="btn-primary" data-aos="zoom-in" data-aos-duration="1500">Become a Provider</a>
+    </div>
+  </header>
+
+  <!-- Benefits Section -->
+  <section class="benefits" data-aos="fade-up" data-aos-duration="1500">
+    <h2>Why Join Us?</h2>
+    <div class="benefit-grid">
+      <div class="benefit-item" data-aos="fade-right" data-aos-duration="1200">
+        <i class="fas fa-users"></i>
+        <h3>More Clients</h3>
+        <p>Connect with hundreds of customers near you every week.</p>
+      </div>
+      <div class="benefit-item" data-aos="fade-up" data-aos-duration="1200">
+        <i class="fas fa-calendar-check"></i>
+        <h3>Flexible Schedule</h3>
+        <p>Set your own hours and manage availability in real time.</p>
+      </div>
+      <div class="benefit-item" data-aos="fade-left" data-aos-duration="1200">
+        <i class="fas fa-credit-card"></i>
+        <h3>Fast Payments</h3>
+        <p>Get paid directly to your account after every service.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" data-aos="fade-up" data-aos-duration="1500">
+    <h2>What Our Providers Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-item">
+        <p>"CarWashPro has brought in more customers than we could handle! Their platform makes it so easy to manage bookings and payments."</p>
+        <span>- John, Owner of CleanCar Service</span>
+      </div>
+      <div class="testimonial-item">
+        <p>"The flexibility and easy setup made joining CarWashPro a no-brainer. My business has grown significantly since I signed up!"</p>
+        <span>- Sarah, Owner of Sparkle Detailing</span>
+      </div>
+      <div class="testimonial-item">
+        <p>"Fast, reliable, and a great way to connect with people in my local area. I highly recommend joining CarWashPro!"</p>
+        <span>- Michael, Owner of Auto Wash</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="steps" data-aos="fade-up" data-aos-duration="1500">
+    <h2>How It Works</h2>
+    <div class="step-grid">
+      <div class="step">
+        <span class="number">1</span>
+        <h4>Sign Up</h4>
+        <p>Submit your business details using the form below.</p>
+      </div>
+      <div class="step">
+        <span class="number">2</span>
+        <h4>Verification</h4>
+        <p>We review your documents and approve your profile.</p>
+      </div>
+      <div class="step">
+        <span class="number">3</span>
+        <h4>Start Earning</h4>
+        <p>Get listed and start accepting bookings immediately!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section" id="form" data-aos="zoom-in" data-aos-duration="1500">
+    <h2>Apply to Become a Provider</h2>
+    <form action="/submit-provider-form" method="POST" class="provider-form">
+      <div class="form-row">
+        <label for="name">Business Name *</label>
+        <input type="text" id="name" name="business_name" required />
+      </div>
+
+      <div class="form-row">
+        <label for="owner">Owner Name *</label>
+        <input type="text" id="owner" name="owner_name" required />
+      </div>
+
+      <div class="form-row">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-row">
+        <label for="services">Services Offered *</label>
+        <textarea
+          id="services"
+          name="services_offered"
+          placeholder="e.g. Full Wash, Interior Detailing, Oil Change"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="location">Business Location *</label>
+        <input type="text" id="location" name="location" required />
+      </div>
+
+      <button type="submit" class="btn-primary" data-aos="pulse" data-aos-duration="1500">Submit Application</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 CarWashPro. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200, // Animation duration (ms)
+      once: true, // Only animate once
+    });
+  </script>
+
+</body>
+</html>
