@@ -10,22 +10,54 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
-      --orange: #FF8800;
-      --black: #181818;
+      --primary-blue: #1e40af;
+      --secondary-blue: #3b82f6;
+      --accent-blue: #60a5fa;
+      --light-blue: #f8fafc;
+      --dark-blue: #1e293b;
       --white: #fff;
-      --gray: #f5f5f5;
+      --gray: #f1f5f9;
+      --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-light: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--white);
-      color: var(--black);
+      background: linear-gradient(135deg, #fef7f0 0%, #fde8d4 100%);
+      color: var(--dark-blue);
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
+    
+    /* Mobile-specific background improvements */
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+    }
+    
     .bg-hero {
-      background: var(--black);
+      background: linear-gradient(135deg, #fef7f0 0%, #fde8d4 100%);
       position: relative;
       overflow: hidden;
+    }
+    
+    /* Mobile hero background improvement */
+    @media (max-width: 768px) {
+      .bg-hero {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+    }
+    
+    .bg-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+      z-index: 1;
     }
     .hero-car-image {
       position: absolute;
@@ -47,6 +79,15 @@
         width: 70%;
         opacity: 0.10;
       }
+      
+      .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .left-section, .right-section {
+        width: 100% !important;
+      }
     }
     
     @media (max-width: 768px) {
@@ -66,22 +107,60 @@
       
       .hero-title {
         font-size: 2.5rem !important;
+        line-height: 1.2 !important;
       }
       
       .hero-subtitle {
         font-size: 1.1rem !important;
+        line-height: 1.6 !important;
       }
       
       .service-grid {
         grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
       }
       
       .trust-grid {
         flex-direction: column !important;
+        gap: 1.5rem !important;
       }
       
       .trust-item {
         margin-bottom: 1rem;
+      }
+      
+      .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+      }
+      
+      .left-section, .right-section {
+        width: 100% !important;
+        padding: 0 !important;
+      }
+      
+      .booking-form {
+        margin-top: 2rem;
+      }
+      
+      /* Mobile section improvements */
+      section {
+        padding: 3rem 1rem !important;
+      }
+      
+      .service-card {
+        margin-bottom: 1rem;
+      }
+      
+      /* Mobile text improvements */
+      h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+      }
+      
+      p {
+        line-height: 1.6 !important;
       }
     }
     
@@ -94,19 +173,54 @@
       
       .hero-title {
         font-size: 2rem !important;
+        line-height: 1.3 !important;
       }
       
       .hero-subtitle {
         font-size: 1rem !important;
+        line-height: 1.5 !important;
       }
       
       .btn-orange {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        border-radius: 0.5rem;
       }
       
       .service-card {
         padding: 1.5rem !important;
+        margin-bottom: 1rem;
+        border-radius: 1rem !important;
+      }
+      
+      /* Small mobile improvements */
+      section {
+        padding: 2rem 0.75rem !important;
+      }
+      
+      .hero-content {
+        padding: 0.75rem !important;
+      }
+      
+      .left-section {
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Mobile counter improvements */
+      .left-section .grid {
+        gap: 1rem !important;
+      }
+      
+      .left-section .grid > div {
+        padding: 0.5rem;
+      }
+      
+      .left-section .grid .text-3xl {
+        font-size: 1.75rem !important;
+      }
+      
+      .left-section .grid .text-sm {
+        font-size: 0.8rem !important;
       }
     }
     
@@ -117,38 +231,76 @@
     }
     
     .btn-orange {
-      background: var(--orange);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: var(--white);
       padding: 0.75rem 1.5rem;
       border-radius: 0.75rem;
       font-weight: 600;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
       outline: none;
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .btn-orange::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-orange:hover::before {
+      left: 100%;
+    }
+    
     .btn-orange:hover, .btn-orange:focus {
-      background: #e06d00;
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
       color: var(--white);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
     }
     
     .service-card {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1.5px solid #f3e7d7;
-      background: var(--white);
-      border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       overflow: hidden;
+      position: relative;
     }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+    
     .service-card:hover {
-      border-color: var(--orange);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      transform: translateY(-4px);
+      border-color: var(--secondary-blue);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+      transform: translateY(-8px);
     }
     .service-card .add-to-cart-btn {
-      background: var(--orange);
+      background: var(--secondary-blue);
       color: var(--white);
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
@@ -158,14 +310,14 @@
       cursor: pointer;
     }
     .service-card .add-to-cart-btn:hover, .service-card .add-to-cart-btn:focus {
-      background: #e06d00;
+      background: var(--primary-blue);
       transform: translateY(-1px);
     }
     
     /* Typing Effect */
     .typing-text {
       overflow: hidden;
-      border-right: 3px solid var(--orange);
+      border-right: 3px solid var(--secondary-blue);
       white-space: nowrap;
       animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
     }
@@ -177,34 +329,144 @@
     
     @keyframes blink-caret {
       from, to { border-color: transparent; }
-      50% { border-color: var(--orange); }
+      50% { border-color: var(--secondary-blue); }
     }
     
     .gradient-text {
-      color: var(--orange);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-weight: 800;
     }
     
+    /* Enhanced Navbar Styling */
+    .navbar-enhanced {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+    }
+    
+    .booking-form {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .booking-form::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Booking form responsive improvements */
+    @media (max-width: 768px) {
+      .booking-form {
+        padding: 1.5rem !important;
+        margin: 0 1rem;
+        border-radius: 1rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      .booking-form h3 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .booking-form .space-y-6 > div {
+        margin-bottom: 1.5rem;
+      }
+      
+      .booking-form select,
+      .booking-form input {
+        padding: 1rem !important;
+        font-size: 1rem;
+        border-radius: 0.75rem !important;
+        border: 2px solid #e2e8f0 !important;
+      }
+      
+      .booking-form select:focus,
+      .booking-form input:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+      }
+      
+      .booking-form button,
+      .booking-form a {
+        padding: 1rem !important;
+        font-size: 1rem;
+        border-radius: 0.75rem !important;
+        font-weight: 600 !important;
+      }
+      
+      .booking-form label {
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.5rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .booking-form {
+        padding: 1.25rem !important;
+        margin: 0 0.75rem;
+        border-radius: 0.75rem !important;
+      }
+      
+      .booking-form h3 {
+        font-size: 1.25rem !important;
+      }
+      
+      .booking-form select,
+      .booking-form input {
+        padding: 0.875rem !important;
+        font-size: 0.95rem;
+      }
+      
+      .booking-form button,
+      .booking-form a {
+        padding: 0.875rem !important;
+        font-size: 0.95rem;
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
     .trust-item i {
-      color: var(--orange);
+      color: var(--secondary-blue);
     }
     .trust-item {
       background: var(--white);
-      border: 1px solid #f3e7d7;
+      border: 1px solid #e2e8f0;
       border-radius: 10px;
       padding: 25px;
       transition: transform 0.2s;
     }
     .trust-item:hover {
       transform: translateY(-3px);
-      border-color: var(--orange);
+      border-color: var(--secondary-blue);
     }
     .footer {
-      background: var(--black);
+      background: var(--dark-blue);
       color: var(--white);
     }
     .footer a {
-      color: var(--orange);
+      color: var(--secondary-blue);
       transition: color 0.2s;
     }
     .footer a:hover {
@@ -232,112 +494,133 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: var(--black);
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
       z-index: 50;
       padding-top: 80px;
+      backdrop-filter: blur(10px);
     }
     
     .mobile-menu.active {
       display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     .mobile-menu a {
       display: block;
-      padding: 1rem 2rem;
-      color: var(--white);
+      padding: 1.2rem 2rem;
+      color: #f1f5f9;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      position: relative;
     }
     
     .mobile-menu a:hover {
-      background: var(--orange);
-      color: var(--white);
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-menu a:last-child {
+      margin: 1rem 2rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      font-weight: 600;
     }
     
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      padding: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 60;
+    }
+    
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
     
     .hamburger span {
       width: 25px;
       height: 3px;
-      background: var(--white);
+      background: #f1f5f9;
       margin: 3px 0;
-      transition: 0.3s;
+      transition: 0.3s ease;
+      border-radius: 2px;
+      transform-origin: center;
     }
     
     .hamburger.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
+      transform: rotate(45deg) translate(6px, 6px);
     }
     
     .hamburger.active span:nth-child(2) {
       opacity: 0;
+      transform: scale(0);
     }
     
     .hamburger.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
+      transform: rotate(-45deg) translate(6px, -6px);
     }
     
-    /* Mobile Navigation */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: var(--black);
-      z-index: 50;
-      padding-top: 80px;
-    }
-    
-    .mobile-menu.active {
-      display: block;
-    }
-    
-    .mobile-menu a {
-      display: block;
-      padding: 1rem 2rem;
-      color: var(--white);
-      text-decoration: none;
-      font-size: 1.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .mobile-menu a:hover {
-      background: var(--orange);
-      color: var(--white);
-    }
-    
-    .hamburger {
-      display: none;
-      flex-direction: column;
+    /* Mobile menu close button */
+    .mobile-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 50%;
       cursor: pointer;
-      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 55;
     }
     
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: var(--white);
-      margin: 3px 0;
-      transition: 0.3s;
+    .mobile-menu-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
     }
     
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
+    .mobile-menu-close::before,
+    .mobile-menu-close::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background: #f1f5f9;
+      transition: 0.3s ease;
     }
     
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
+    .mobile-menu-close::before {
+      transform: rotate(45deg);
     }
     
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
+    .mobile-menu-close::after {
+      transform: rotate(-45deg);
     }
     
     /* Responsive Breakpoints */
@@ -369,6 +652,35 @@
       .trust-item {
         margin-bottom: 1rem;
       }
+      
+      /* Mobile testimonials improvement */
+      #testimonials .grid {
+        gap: 1.5rem !important;
+      }
+      
+      #testimonials .bg-white {
+        padding: 1.5rem !important;
+        border-radius: 1rem !important;
+      }
+      
+      /* Mobile contact improvement */
+      #contact .grid {
+        gap: 2rem !important;
+      }
+      
+      #contact .bg-gray-50 {
+        padding: 1.5rem !important;
+        border-radius: 1rem !important;
+      }
+      
+      /* Mobile footer improvement */
+      .footer .grid {
+        gap: 2rem !important;
+      }
+      
+      .footer .text-center {
+        text-align: left !important;
+      }
     }
     
     @media (max-width: 480px) {
@@ -397,26 +709,26 @@
     }
   </style>
 </head>
-<body class="bg-white text-black">
+<body class="bg-blue-50 text-slate-800">
 
 <!-- Navbar -->
-<nav class="bg-black shadow-xl fixed w-full top-0 z-40 transition-all duration-300" id="navbar">
+<nav class="bg-gradient-to-r from-blue-900 to-blue-800 shadow-2xl fixed w-full top-0 z-40 transition-all duration-300 backdrop-blur-sm navbar-enhanced" id="navbar">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-4">
       <div class="text-2xl font-bold text-white flex items-center">
-        <i class="fas fa-car text-orange-500 mr-2"></i>
-        DriveConnect
+        <i class="fas fa-car text-blue-300 mr-2"></i>
+        <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">DriveConnect</span>
       </div>
     </div>
     <div class="hidden md:flex items-center space-x-6 font-medium desktop-nav">
-      <a href="#home" class="text-white hover:text-orange-500 transition">Home</a>
-      <a href="#services" class="text-white hover:text-orange-500 transition">Services</a>
-      <a href="#process" class="text-white hover:text-orange-500 transition">How It Works</a>
-      <a href="#testimonials" class="text-white hover:text-orange-500 transition">Reviews</a>
-      <a href="#contact" class="text-white hover:text-orange-500 transition">Contact</a>
-      <a href="service_provider.html" class="text-white hover:text-orange-500 transition">Become Service Provider</a>
-      <a href="/book" class="ml-2 px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-all duration-300 text-sm font-semibold transform hover:scale-105">
-        <i class="fas fa-calendar-check mr-2"></i>Book Now
+      <a href="#home" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Home</a>
+      <a href="#services" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Services</a>
+      <a href="#process" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">How It Works</a>
+      <a href="#testimonials" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Reviews</a>
+      <a href="#contact" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Contact</a>
+      <a href="service_provider.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Become Service Provider</a>
+      <a href="booking.html" class="ml-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl">
+        <i class="fas fa-sign-in mr-2"></i>Sign In
       </a>
     </div>
     <!-- Mobile Menu Button -->
@@ -429,177 +741,280 @@
   
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+      <i class="fas fa-times"></i>
+    </button>
     <a href="#home" onclick="closeMobileMenu()">Home</a>
     <a href="#services" onclick="closeMobileMenu()">Services</a>
     <a href="#process" onclick="closeMobileMenu()">How It Works</a>
     <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
     <a href="service_provider.html" onclick="closeMobileMenu()">Become Service Provider</a>
-    <a href="/book" onclick="closeMobileMenu()" class="bg-orange-500 text-white">
+    <a href="booking.html" onclick="closeMobileMenu()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
       <i class="fas fa-calendar-check mr-2"></i>Book Now
     </a>
   </div>
 </nav>
-
 <!-- Hero Section -->
-<header id="home" class="bg-hero h-screen flex items-center justify-center text-center text-white relative overflow-hidden">
-  <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80" alt="Luxury car being washed" class="hero-car-image">
-  <div class="relative z-10 px-6 max-w-4xl mx-auto">
-    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 gradient-text animate__animated animate__fadeInUp hero-title">
-      <span class="typing-text">Drive Clean.</span><br><span class="typing-text" style="animation-delay: 1.5s;">Feel Fresh.</span>
-    </h1>
-    <p class="text-xl md:text-2xl mb-8 opacity-90 font-light animate__animated animate__fadeInUp hero-subtitle">
-      <i class="fas fa-star text-orange-400 mr-2"></i>
-      Premium car care services at your doorstep
-      <i class="fas fa-star text-orange-400 ml-2"></i>
-    </p>
-    <div class="space-y-4 md:space-y-0 md:space-x-4 animate__animated animate__fadeInUp">
-      <a href="/book" class="btn-orange inline-block font-semibold">
-        <i class="fas fa-calendar-check mr-2"></i>Book Your Wash
-      </a>
-      <a href="#services" class="btn-orange inline-block font-semibold bg-transparent border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition">
-        <i class="fas fa-play mr-2"></i>Learn More
-      </a>
+<header id="home" class="bg-hero min-h-screen flex items-center justify-start text-left text-slate-800 relative overflow-hidden py-20">
+  <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80" alt="Luxury car being washed" class="hero-car-image absolute inset-0 w-full h-full object-cover opacity-40">
+
+  <!-- Content Container with Flexbox Layout -->
+  <div class="relative z-10 px-6 max-w-7xl flex flex-col md:flex-row items-center w-full hero-content">
+    <!-- Left Section (Hero Content) -->
+    <div class="left-section w-full md:w-1/2 text-left mb-12 md:mb-0">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4 gradient-text animate__animated animate__fadeInUp hero-title">
+        <span class="">We clean, </span>
+        <span class="">We shine, We restore.</span>
+      </h1>
+      <p class="text-lg md:text-xl mb-6 opacity-90 font-light animate__animated animate__fadeInUp hero-subtitle">Your ride will never look better.</p> 
+      <p class="text-lg md:text-xl mb-6 opacity-90 font-light animate__animated animate__fadeInUp hero-subtitle">
+        Premium car care services.
+      </p>
+      <div class="space-y-4 md:space-y-0 md:space-x-4 animate__animated animate__fadeInUp">
+        <a href="#services" class="btn-orange inline-block font-semibold bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition px-6 py-3">
+          <i class="fas fa-play mr-2"></i>Learn More
+        </a>
+      </div>
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate__animated animate__fadeInUp">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="50000">0</div>
+          <p class="text-sm opacity-80">Happy Customers</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="15">0</div>
+          <p class="text-sm opacity-80">Cities Served</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="98">0</div>
+          <p class="text-sm opacity-80">% Satisfaction</p>
+        </div>
+      </div>
     </div>
-    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate__animated animate__fadeInUp">
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold mb-2 text-orange-500" data-count="50000">0</div>
-        <p class="text-sm opacity-80">Happy Customers</p>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold mb-2 text-orange-500" data-count="15">0</div>
-        <p class="text-sm opacity-80">Cities Served</p>
-      </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold mb-2 text-orange-500" data-count="98">0</div>
-        <p class="text-sm opacity-80">% Satisfaction</p>
+
+    <!-- Right Section (Booking Form) -->
+    <div class="right-section w-full md:w-1/2 px-6 animate__animated animate__fadeInRight">
+      <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20 booking-form">
+        <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">
+          <i class="fas fa-calendar-check text-blue-600 mr-2"></i>
+          Book Your Service
+        </h3>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">
+              <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Location
+            </label>
+            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+              <option value="">Select your location</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="delhi">Delhi</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="chennai">Chennai</option>
+              <option value="hyderabad">Hyderabad</option>
+              <option value="pune">Pune</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">
+              <i class="fas fa-car text-blue-600 mr-2"></i>Car Make
+            </label>
+            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+              <option value="">Select car make</option>
+              <option value="honda">Honda</option>
+              <option value="toyota">Toyota</option>
+              <option value="hyundai">Hyundai</option>
+              <option value="maruti">Maruti Suzuki</option>
+              <option value="tata">Tata</option>
+              <option value="mahindra">Mahindra</option>
+              <option value="bmw">BMW</option>
+              <option value="audi">Audi</option>
+              <option value="mercedes">Mercedes-Benz</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">
+              <i class="fas fa-cog text-blue-600 mr-2"></i>Car Model
+            </label>
+            <input type="text" placeholder="Enter car model" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">
+              <i class="fas fa-tools text-blue-600 mr-2"></i>Service Type
+            </label>
+            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+              <option value="">Select service type</option>
+              <option value="exterior-wash">Exterior Wash - ₹299</option>
+              <option value="interior-detailing">Interior Detailing - ₹499</option>
+              <option value="exterior-detailing">Exterior Detailing - ₹799</option>
+              <option value="full-service">Full Car Service - ₹1299</option>
+            </select>
+          </div>
+          
+          <a href="booking.html" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Book Now
+          </a>
+        </div>
+        
+        <div class="mt-6 text-center">
+          <p class="text-sm text-slate-600">
+            <i class="fas fa-shield-alt text-blue-600 mr-1"></i>
+            Secure booking • Instant confirmation
+          </p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="scroll-indicator">
-    <div class="text-white text-center">
+</header>
+
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator absolute bottom-10 w-full text-center">
+    <div class="text-slate-800">
       <p class="text-sm mb-2 opacity-70">Scroll to explore</p>
       <i class="fas fa-chevron-down text-xl"></i>
     </div>
   </div>
-</header>
+
+<!-- How It Works -->
+<section id="process" class="py-20 bg-gray-50 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-800">How It Works</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get your car professionally cleaned in just 4 simple steps</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Step 1: Login and Register -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-user text-2xl font-bold text-blue-600"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-slate-800">Login and Register</h3>
+        <p class="text-gray-600">Create an account or log in to access all our services.</p>
+      </div>
+      
+      <!-- Step 2: Checkout the Services -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-shopping-cart text-2xl font-bold text-blue-600"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-slate-800">Checkout the Services</h3>
+        <p class="text-gray-600">Browse through our available car care services and choose the one that suits you.</p>
+      </div>
+      
+      <!-- Step 3: Choose Preferred Garage -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-map-marker-alt text-2xl font-bold text-blue-600"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-slate-800">Choose Preferred Garage</h3>
+        <p class="text-gray-600">Select your preferred garage location for convenience and service quality.</p>
+      </div>
+      
+      <!-- Step 4: Appointment Confirmation -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-calendar-check text-2xl font-bold text-blue-600"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-slate-800">Your Appointment is Confirmed</h3>
+        <p class="text-gray-600">Once confirmed, your car care service will be scheduled, and you're all set!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 <!-- Services -->
 <section id="services" class="py-20 bg-white relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
     <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Our Premium Services</h2>
-    <p class="text-lg text-gray-700 mb-16 max-w-2xl mx-auto">Experience the difference with our professional car care services designed to keep your vehicle looking its best.</p>
+    <p class="text-lg text-slate-600 mb-16 max-w-2xl mx-auto">Experience the difference with our professional car care services designed to keep your vehicle looking its best.</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 service-grid">
       <!-- Service cards -->
       <div class="service-card p-8 group cursor-pointer">
-        <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <i class="fas fa-car text-orange-500 text-2xl"></i>
+        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-car text-blue-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Exterior Wash</h3>
+        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Exterior Wash</h3>
         <p class="text-gray-600 mb-4">High-pressure rinse, premium foam shampoo & spotless drying for a showroom finish.</p>
         <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold text-black">₹299</span>
+          <span class="text-2xl font-bold text-slate-800">₹299</span>
           <button class="add-to-cart-btn"><i class="fas fa-plus mr-1"></i>Add</button>
         </div>
       </div>
       <div class="service-card p-8 group cursor-pointer">
-        <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <i class="fas fa-couch text-orange-500 text-2xl"></i>
+        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-couch text-blue-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Interior Detailing</h3>
+        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Interior Detailing</h3>
         <p class="text-gray-600 mb-4">Deep cleaning, dashboard polish & odor removal for fresh, hygienic interiors.</p>
         <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold text-black">₹499</span>
+          <span class="text-2xl font-bold text-slate-800">₹499</span>
           <button class="add-to-cart-btn"><i class="fas fa-plus mr-1"></i>Add</button>
         </div>
       </div>
       <div class="service-card p-8 group cursor-pointer">
-        <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <i class="fas fa-tools text-orange-500 text-2xl"></i>
+        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-tools text-blue-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Exterior Detailing</h3>
+        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Exterior Detailing</h3>
         <p class="text-gray-600 mb-4">Professional exterior repair and detailing to make your car look brand new.</p>
         <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold text-black">₹799</span>
+          <span class="text-2xl font-bold text-slate-800">₹799</span>
           <button class="add-to-cart-btn"><i class="fas fa-plus mr-1"></i>Add</button>
         </div>
       </div>
       <div class="service-card p-8 group cursor-pointer">
-        <div class="w-20 h-20 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <i class="fas fa-star text-orange-500 text-2xl"></i>
+        <div class="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-star text-blue-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Full Car Service</h3>
+        <h3 class="text-xl font-semibold mb-3 group-hover:text-blue-600 transition-colors">Full Car Service</h3>
         <p class="text-gray-600 mb-4">Complete checkup and repair of exterior parts for a fully restored look.</p>
         <div class="flex justify-between items-center">
-          <span class="text-2xl font-bold text-black">₹1299</span>
+          <span class="text-2xl font-bold text-slate-800">₹1299</span>
           <button class="add-to-cart-btn"><i class="fas fa-plus mr-1"></i>Add</button>
         </div>
       </div>
     </div>
     <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
-          <i class="fas fa-clock text-orange-500 text-xl"></i>
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+          <i class="fas fa-clock text-blue-600 text-xl"></i>
         </div>
-        <h3 class="text-lg font-bold mb-2 text-black">Quick Service</h3>
-        <p class="text-gray-700">Most services completed within 2-3 hours</p>
+        <h3 class="text-lg font-bold mb-2 text-slate-800">Quick Service</h3>
+        <p class="text-slate-600">Most services completed within 2-3 hours</p>
       </div>
       <div class="text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
-          <i class="fas fa-shield-alt text-orange-500 text-xl"></i>
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+          <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
         </div>
-        <h3 class="text-lg font-bold mb-2 text-black">Quality Guarantee</h3>
-        <p class="text-gray-700">100% satisfaction or we'll redo it for free</p>
+        <h3 class="text-lg font-bold mb-2 text-slate-800">Quality Guarantee</h3>
+        <p class="text-slate-600">100% satisfaction or we'll redo it for free</p>
       </div>
       <div class="text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-4">
-          <i class="fas fa-home text-orange-500 text-xl"></i>
+        <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+          <i class="fas fa-home text-blue-600 text-xl"></i>
         </div>
-        <h3 class="text-lg font-bold mb-2 text-black">At Your Doorstep</h3>
-        <p class="text-gray-700">We come to you, no need to drive anywhere</p>
+        <h3 class="text-lg font-bold mb-2 text-slate-800">At Your Doorstep</h3>
+        <p class="text-slate-600">We come to you, no need to drive anywhere</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How It Works -->
-<section id="process" class="py-20 bg-gray-50 relative">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black">How It Works</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get your car professionally cleaned in just 3 simple steps</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <span class="text-2xl font-bold text-orange-500">1</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-black">Book Appointment</h3>
-        <p class="text-gray-600">Choose your service, date, and time. We'll confirm within minutes.</p>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <span class="text-2xl font-bold text-orange-500">2</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-black">Professional Service</h3>
-        <p class="text-gray-600">Our certified experts arrive at your location with all necessary equipment.</p>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow-lg text-center">
-        <div class="w-16 h-16 mx-auto bg-orange-100 rounded-full flex items-center justify-center mb-6">
-          <span class="text-2xl font-bold text-orange-500">3</span>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-black">Enjoy Clean Car</h3>
-        <p class="text-gray-600">Your car is spotless and ready to shine. Pay securely online.</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- Testimonials -->
 <section id="testimonials" class="py-20 bg-white relative">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black">What Our Customers Say</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-800">What Our Customers Say</h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our satisfied customers</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -607,9 +1022,9 @@
         <div class="flex items-center mb-4">
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-bold text-black">Rahul Sharma</h4>
+            <h4 class="font-bold text-slate-800">Rahul Sharma</h4>
             <p class="text-gray-600 text-sm">Mumbai</p>
-            <div class="flex text-orange-500">
+            <div class="flex text-blue-600">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -618,15 +1033,15 @@
             </div>
           </div>
         </div>
-        <p class="text-gray-700 italic">"Amazing service! The team was professional and my car looks brand new. Will definitely use again!"</p>
+        <p class="text-slate-600 italic">"Amazing service! The team was professional and my car looks brand new. Will definitely use again!"</p>
       </div>
       <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
         <div class="flex items-center mb-4">
           <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-bold text-black">Priya Patel</h4>
+            <h4 class="font-bold text-slate-800">Priya Patel</h4>
             <p class="text-gray-600 text-sm">Delhi</p>
-            <div class="flex text-orange-500">
+            <div class="flex text-blue-600">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -635,15 +1050,15 @@
             </div>
           </div>
         </div>
-        <p class="text-gray-700 italic">"Convenient doorstep service with excellent quality. My car has never looked better!"</p>
+        <p class="text-slate-600 italic">"Convenient doorstep service with excellent quality. My car has never looked better!"</p>
       </div>
       <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
         <div class="flex items-center mb-4">
           <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-4">
           <div>
-            <h4 class="font-bold text-black">Amit Kumar</h4>
+            <h4 class="font-bold text-slate-800">Amit Kumar</h4>
             <p class="text-gray-600 text-sm">Bangalore</p>
-            <div class="flex text-orange-500">
+            <div class="flex text-blue-600">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
@@ -652,14 +1067,14 @@
             </div>
           </div>
         </div>
-        <p class="text-gray-700 italic">"Professional team, great attention to detail. Highly recommend DriveConnect!"</p>
+        <p class="text-slate-600 italic">"Professional team, great attention to detail. Highly recommend DriveConnect!"</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Become Service Provider Section -->
-<section class="bg-black text-white py-20 text-center relative overflow-hidden">
+<section class="bg-slate-800 text-white py-20 text-center relative overflow-hidden">
   <div class="relative z-10 max-w-4xl mx-auto px-6">
     <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Be Our Partner.<br>Drive Your Business Further.</h2>
     <p class="text-xl mb-8 opacity-90">Join a growing network of verified car wash & service providers across the country.</p>
@@ -696,14 +1111,14 @@
 <section id="contact" class="py-20 bg-white relative">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-black">Get in Touch</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-800">Get in Touch</h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div class="space-y-8">
         <div class="flex items-center space-x-4 p-6 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-            <i class="fas fa-phone text-orange-500 text-xl"></i>
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-phone text-blue-600 text-xl"></i>
           </div>
           <div>
             <h3 class="font-semibold text-lg">Call Us</h3>
@@ -712,8 +1127,8 @@
           </div>
         </div>
         <div class="flex items-center space-x-4 p-6 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-            <i class="fas fa-envelope text-orange-500 text-xl"></i>
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-envelope text-blue-600 text-xl"></i>
           </div>
           <div>
             <h3 class="font-semibold text-lg">Email Us</h3>
@@ -722,8 +1137,8 @@
           </div>
         </div>
         <div class="flex items-center space-x-4 p-6 bg-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-            <i class="fas fa-map-marker-alt text-orange-500 text-xl"></i>
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
           </div>
           <div>
             <h3 class="font-semibold text-lg">Visit Us</h3>
@@ -733,7 +1148,7 @@
         </div>
       </div>
       <div class="bg-gray-50 p-8 rounded-2xl shadow-lg">
-        <h3 class="text-2xl font-bold mb-6 text-black">Send us a Message</h3>
+        <h3 class="text-2xl font-bold mb-6 text-slate-800">Send us a Message</h3>
         <form id="contactForm" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -754,7 +1169,7 @@
             <textarea name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Tell us about your car care needs..." required minlength="10" maxlength="500"></textarea>
             <div class="text-gray-500 text-sm mt-1 text-right" id="message-counter">0/500</div>
           </div>
-          <button type="submit" class="w-full px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-105">
+          <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
             <i class="fas fa-paper-plane mr-2"></i>Send Message
           </button>
         </form>
@@ -769,18 +1184,18 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div>
         <div class="text-2xl font-bold gradient-text mb-4 flex items-center">
-          <i class="fas fa-car text-orange-500 mr-2"></i>
+          <i class="fas fa-car text-blue-400 mr-2"></i>
           DriveConnect
         </div>
         <p class="text-gray-400 mb-4">Premium car care services at your doorstep. Making your car shine like never before.</p>
         <div class="flex space-x-4">
-          <a href="#" class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-orange-100 transition-colors">
+          <a href="#" class="w-10 h-10 bg-white text-slate-800 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-orange-100 transition-colors">
+          <a href="#" class="w-10 h-10 bg-white text-slate-800 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#" class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-orange-100 transition-colors">
+          <a href="#" class="w-10 h-10 bg-white text-slate-800 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
             <i class="fab fa-instagram"></i>
           </a>
         </div>
@@ -788,33 +1203,33 @@
       <div>
         <h3 class="text-lg font-semibold mb-4">Services</h3>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Exterior Wash</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Interior Detailing</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Exterior Detailing</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Full Car Service</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Exterior Wash</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Interior Detailing</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Exterior Detailing</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Full Car Service</a></li>
         </ul>
       </div>
       <div>
         <h3 class="text-lg font-semibold mb-4">Company</h3>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-orange-500 transition-colors">About Us</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Careers</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Careers</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Terms of Service</a></li>
         </ul>
       </div>
       <div>
         <h3 class="text-lg font-semibold mb-4">Support</h3>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Help Center</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Contact Us</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">Live Chat</a></li>
-          <li><a href="#" class="hover:text-orange-500 transition-colors">FAQ</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Help Center</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">Live Chat</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition-colors">FAQ</a></li>
         </ul>
       </div>
     </div>
     <div class="border-t border-gray-700 pt-8 text-center">
-      <p class="text-gray-400">© 2025 DriveConnect. Designed with <i class="fas fa-heart text-orange-500"></i> | All rights reserved.</p>
+      <p class="text-gray-400">© 2025 DriveConnect. Designed with <i class="fas fa-heart text-blue-400"></i> | All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -859,13 +1274,35 @@
   document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    const closeBtn = document.querySelector('.mobile-menu-close');
     
     if (hamburger && mobileMenu) {
       hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
       });
     }
+    
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    }
+    
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
   });
 
   // Close mobile menu function
@@ -875,6 +1312,7 @@
     if (hamburger && mobileMenu) {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
     }
   }
 
@@ -901,9 +1339,11 @@
     const navbar = document.getElementById('navbar');
     if (navbar) {
       if (window.scrollY > 100) {
-        navbar.classList.add('bg-black/95', 'backdrop-blur-sm');
+        navbar.classList.add('bg-blue-900/95', 'backdrop-blur-md');
+        navbar.classList.add('shadow-2xl');
       } else {
-        navbar.classList.remove('bg-black/95', 'backdrop-blur-sm');
+        navbar.classList.remove('bg-blue-900/95', 'backdrop-blur-md');
+        navbar.classList.remove('shadow-2xl');
       }
     }
   });
@@ -913,6 +1353,52 @@
     const typingElements = document.querySelectorAll('.typing-text');
     typingElements.forEach((element, index) => {
       element.style.animationDelay = `${index * 1.5}s`;
+    });
+    
+    // Booking form handling
+    const bookingForm = document.querySelector('.booking-form form');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const location = this.querySelector('select[placeholder*="location"]').value;
+        const carMake = this.querySelector('select[placeholder*="make"]').value;
+        const carModel = this.querySelector('input[placeholder*="model"]').value;
+        const serviceType = this.querySelector('select[placeholder*="type"]').value;
+        
+        // Validate form
+        if (!location || !carMake || !carModel || !serviceType) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        // Show success message
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Booking Submitted!';
+        submitBtn.classList.add('bg-green-600');
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          this.reset();
+          submitBtn.innerHTML = originalText;
+          submitBtn.classList.remove('bg-green-600');
+        }, 3000);
+      });
+    }
+    
+    // Add focus effects to form inputs
+    const formInputs = document.querySelectorAll('.booking-form input, .booking-form select');
+    formInputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
     });
   });
 </script>
