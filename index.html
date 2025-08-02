@@ -754,57 +754,55 @@
       <i class="fas fa-calendar-check mr-2"></i>Book Now
     </a>
   </div>
-</nav>
-<!-- Hero Section -->
-<header id="home" class="bg-hero min-h-screen flex items-center justify-start text-left text-slate-800 relative overflow-hidden py-20">
-  <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80" alt="Luxury car being washed" class="hero-car-image absolute inset-0 w-full h-full object-cover opacity-40">
+</nav><header id="home" class="bg-white min-h-screen flex items-center text-slate-800 py-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex flex-col md:flex-row items-center w-full gap-8">
 
-  <!-- Content Container with Flexbox Layout -->
-  <div class="relative z-10 px-6 max-w-7xl flex flex-col md:flex-row items-center w-full hero-content">
-    <!-- Left Section (Hero Content) -->
-    <div class="left-section w-full md:w-1/2 text-left mb-12 md:mb-0">
-      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4 gradient-text animate__animated animate__fadeInUp hero-title">
-        <span class="">We clean, </span>
-        <span class="">We shine, We restore.</span>
+    <!-- Left Section (Image & Text) -->
+    <div class="w-full md:w-1/2 flex flex-col items-start mb-12 md:mb-0">
+      <!-- Image visible on left -->
+      <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Luxury car being washed" class="rounded-xl shadow-lg mb-6 w-full object-cover max-h-[400px] md:max-h-[500px]">
+
+      <!-- Text content -->
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4 animate__animated animate__fadeInUp">
+        We clean, <br class="md:hidden" /> We shine, We restore.
       </h1>
-      <p class="text-lg md:text-xl mb-6 opacity-90 font-light animate__animated animate__fadeInUp hero-subtitle">Your ride will never look better.</p> 
-      <p class="text-lg md:text-xl mb-6 opacity-90 font-light animate__animated animate__fadeInUp hero-subtitle">
-        Premium car care services.
-      </p>
-      <div class="space-y-4 md:space-y-0 md:space-x-4 animate__animated animate__fadeInUp">
-        <a href="#services" class="btn-orange inline-block font-semibold bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition px-6 py-3">
-          <i class="fas fa-play mr-2"></i>Learn More
-        </a>
-      </div>
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate__animated animate__fadeInUp">
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="50000">0</div>
-          <p class="text-sm opacity-80">Happy Customers</p>
+      <p class="text-lg md:text-xl mb-4 font-light animate__animated animate__fadeInUp">Your ride will never look better.</p>
+      <p class="text-lg md:text-xl mb-6 font-light animate__animated animate__fadeInUp">Premium car care services.</p>
+
+      <a href="#services" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition hover:bg-blue-700 animate__animated animate__fadeInUp">
+        <i class="fas fa-play mr-2"></i> Learn More
+      </a>
+
+      <!-- Stats -->
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center animate__animated animate__fadeInUp w-full">
+        <div>
+          <div class="text-3xl font-bold text-blue-600" data-count="50000">0</div>
+          <p class="text-sm text-slate-600">Happy Customers</p>
         </div>
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="15">0</div>
-          <p class="text-sm opacity-80">Cities Served</p>
+        <div>
+          <div class="text-3xl font-bold text-blue-600" data-count="15">0</div>
+          <p class="text-sm text-slate-600">Cities Served</p>
         </div>
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold mb-2 text-blue-600" data-count="98">0</div>
-          <p class="text-sm opacity-80">% Satisfaction</p>
+        <div>
+          <div class="text-3xl font-bold text-blue-600" data-count="98">0</div>
+          <p class="text-sm text-slate-600">% Satisfaction</p>
         </div>
       </div>
     </div>
 
-    <!-- Right Section (Booking Form) -->
-    <div class="right-section w-full md:w-1/2 px-6 animate__animated animate__fadeInRight">
-      <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20 booking-form">
+    <!-- Right Section (Form) -->
+    <div class="w-full md:w-1/2 animate__animated animate__fadeInRight">
+      <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-8 border border-white/30">
         <h3 class="text-2xl font-bold text-slate-800 mb-6 text-center">
-          <i class="fas fa-calendar-check text-blue-600 mr-2"></i>
-          Book Your Service
+          <i class="fas fa-calendar-check text-blue-600 mr-2"></i> Book Your Service
         </h3>
-        <div class="space-y-6">
+        <form action="booking.html" method="GET" class="space-y-5">
+          <!-- Location -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">
+            <label class="block text-sm font-medium text-slate-700 mb-2">
               <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Location
             </label>
-            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+            <select required class="w-full text-base px-4 py-3 border border-gray-300 rounded-lg bg-white/80 focus:ring-2 focus:ring-blue-500 focus:outline-none">
               <option value="">Select your location</option>
               <option value="mumbai">Mumbai</option>
               <option value="delhi">Delhi</option>
@@ -814,12 +812,13 @@
               <option value="pune">Pune</option>
             </select>
           </div>
-          
+
+          <!-- Car Make -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">
+            <label class="block text-sm font-medium text-slate-700 mb-2">
               <i class="fas fa-car text-blue-600 mr-2"></i>Car Make
             </label>
-            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+            <select required class="w-full text-base px-4 py-3 border border-gray-300 rounded-lg bg-white/80 focus:ring-2 focus:ring-blue-500 focus:outline-none">
               <option value="">Select car make</option>
               <option value="honda">Honda</option>
               <option value="toyota">Toyota</option>
@@ -833,19 +832,21 @@
               <option value="other">Other</option>
             </select>
           </div>
-          
+
+          <!-- Car Model -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">
+            <label class="block text-sm font-medium text-slate-700 mb-2">
               <i class="fas fa-cog text-blue-600 mr-2"></i>Car Model
             </label>
-            <input type="text" placeholder="Enter car model" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+            <input required type="text" placeholder="Enter car model" class="w-full text-base px-4 py-3 border border-gray-300 rounded-lg bg-white/80 focus:ring-2 focus:ring-blue-500 focus:outline-none">
           </div>
-          
+
+          <!-- Service Type -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">
+            <label class="block text-sm font-medium text-slate-700 mb-2">
               <i class="fas fa-tools text-blue-600 mr-2"></i>Service Type
             </label>
-            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300">
+            <select required class="w-full text-base px-4 py-3 border border-gray-300 rounded-lg bg-white/80 focus:ring-2 focus:ring-blue-500 focus:outline-none">
               <option value="">Select service type</option>
               <option value="exterior-wash">Exterior Wash - ₹299</option>
               <option value="interior-detailing">Interior Detailing - ₹499</option>
@@ -853,17 +854,16 @@
               <option value="full-service">Full Car Service - ₹1299</option>
             </select>
           </div>
-          
-          <a href="booking.html" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center inline-block">
-            <i class="fas fa-paper-plane mr-2"></i>
-            Book Now
-          </a>
-        </div>
-        
+
+          <!-- Submit -->
+          <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+            <i class="fas fa-paper-plane mr-2"></i> Book Now
+          </button>
+        </form>
+
         <div class="mt-6 text-center">
           <p class="text-sm text-slate-600">
-            <i class="fas fa-shield-alt text-blue-600 mr-1"></i>
-            Secure booking • Instant confirmation
+            <i class="fas fa-shield-alt text-blue-600 mr-1"></i> Secure booking • Instant confirmation
           </p>
         </div>
       </div>
