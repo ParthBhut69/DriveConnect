@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://unpkg.com/@clerk/clerk-js@4/dist/clerk.browser.js"></script>
   <style>
     :root {
       --primary-blue: #1e40af;
@@ -427,6 +428,11 @@
   </div>
 
   <script>
+    // Initialize Clerk
+    const clerk = window.Clerk.init({
+      publishableKey: 'YOUR_CLERK_PUBLISHABLE_KEY' // Replace with your actual Clerk publishable key
+    });
+
     // Role selection
     document.querySelectorAll('.role-option').forEach(option => {
       option.addEventListener('click', function() {
@@ -444,7 +450,7 @@
     });
 
     // Form submission handling
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const firstName = this.querySelector('input[placeholder="First name"]').value;
@@ -503,40 +509,28 @@
       submitBtn.disabled = true;
       
       try {
-        const response = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            password,
-            name: `${firstName} ${lastName}`,
-            phone,
-            role
-          })
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-          // Store token and user info
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
-          
-          // Redirect based on selected role
-          switch(data.user.role) {
-            case 'client':
-              window.location.href = '/client-dashboard';
-              break;
-            case 'provider':
-              window.location.href = '/provider-dashboard';
-              break;
-            default:
-              window.location.href = '/client-dashboard';
+       
+        const signUp = await clerk.signUp.create({
+          emailAddress: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phone,
+          publicMetadata: {
+            role: role || 'client'
           }
+        });
+
+        if (signUp.status === 'complete') {
+          
+          localStorage.setItem('selectedRole', role || 'client');
+          
+          
+          const dashboardPath = role === 'provider' ? '/provider-dashboard.html' : '/client-dashboard.html';
+          window.location.href = dashboardPath;
         } else {
-          alert(data.error || 'Registration failed');
+          
+          alert('Please check your email to complete registration.');
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
@@ -548,19 +542,31 @@
       }
     });
 
-    // Google Sign Up
-    document.querySelector('.btn-google').addEventListener('click', function(e) {
+   
+    document.querySelector('.btn-google').addEventListener('click', async function(e) {
       e.preventDefault();
       
-      // Simulate Google OAuth
       const btn = this;
       const originalText = btn.innerHTML;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connecting...';
       
-      setTimeout(() => {
-        // Redirect to appropriate dashboard
-        window.location.href = 'client-dashboard.html';
-      }, 1500);
+      try {
+        
+        const signIn = await clerk.signIn.authenticateWithSocialStrategy({
+          strategy: 'oauth_google',
+          redirectUrl: window.location.origin + '/callback',
+          redirectUrlComplete: window.location.origin + '/client-dashboard.html'
+        });
+        
+        
+        localStorage.setItem('selectedRole', window.selectedRole || 'client');
+        
+       
+      } catch (error) {
+        console.error('Google sign-in error:', error);
+        alert('Google sign-in failed. Please try again.');
+        btn.innerHTML = originalText;
+      }
     });
 
     // Add focus effects
