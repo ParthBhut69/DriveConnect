@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs - DriveConnect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* --- Global Styles --- */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #1f2937;
+    }
+    a { text-decoration: none; }
+
+    /* --- Navbar --- */
+    .navbar {
+      background: #1d4ed8;
+      color: #fff;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .navbar-logo i { margin-right: 8px; color: #93c5fd; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { color: #fff; font-weight: 500; }
+    .nav-links a:hover { color: #93c5fd; }
+
+    /* Hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 2px; }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #111827;
+      z-index: 2000;
+      display: flex; flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.active { transform: translateX(0); }
+
+    .mobile-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #374151; }
+    .mobile-logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; color: #fff; }
+    .close-btn {
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+      z-index: 2100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s;
+    }
+    .close-btn:hover { color: #3b82f6; }
+
+    .mobile-links { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; padding-left: 20px; }
+    .mobile-links a { color: #fff; font-size: 18px; font-weight: 500; }
+    .mobile-links a:hover { color: #93c5fd; }
+
+    @media(max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .navbar-logo { font-size: 18px; }
+    }
+
+    /* --- Page Header --- */
+    .page-header {
+      width: 100%;
+      height: 400px;
+      background-image: url('./assets/src/blog.jpg');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    @media(max-width:1024px){.page-header{height:300px}}
+    @media(max-width:768px){.page-header{height:200px}}
+
+    /* --- Blog Grid --- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 40px 0;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+    .blog-card:hover { transform: translateY(-6px); }
+    .blog-image { height: 160px; background: linear-gradient(135deg,#3b82f6,#1d4ed8); display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.5rem;}
+    .blog-content{padding:1.2rem;flex:1;display:flex;flex-direction:column}
+    .blog-meta{font-size:0.85rem;color:#6b7280;margin-bottom:0.8rem}
+    .blog-title{font-size:1.2rem;font-weight:700;margin-bottom:0.6rem;color:#111827}
+    .blog-excerpt{flex:1;color:#374151;font-size:0.9rem;margin-bottom:1rem}
+    .read-more{display:inline-block;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:0.5rem 1rem;border-radius:6px;font-weight:600;text-align:center;transition:background 0.2s ease}
+    .read-more:hover{background:linear-gradient(135deg,#2563eb,#1e40af)}
+
+    /* --- Footer --- */
+    footer { background:#101d36;color:#fff;padding:40px 20px 20px }
+    .footer-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:1200px;margin:auto;text-align:left}
+    .footer-logo h2{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700}
+    .footer-logo h2 i{color:#3b82f6}
+    .footer-logo p{font-size:16px;color:#ccc;margin-top:10px}
+    .footer-social{margin-top:18px}
+    .footer-social a{margin-right:14px;font-size:18px;color:#fff;transition:color 0.3s}
+    .footer-social a:hover{color:#3b82f6}
+    .footer-column h3{font-size:17px;margin-bottom:12px;font-weight:600}
+    .footer-column a{display:block;color:#93c5fd;margin-bottom:10px;font-size:15px}
+    .footer-bottom{text-align:center;margin-top:30px;font-size:14px;color:#aaa}
+
+    @media(max-width:768px){.footer-container{grid-template-columns:1fr;text-align:left}}
+
+    /* --- Back to Top Button --- */
+    .back-to-top{position:fixed;bottom:25px;right:25px;width:45px;height:45px;background:#1d4ed8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.3);display:none;z-index:3000}
+    .back-to-top.show{display:flex}
+  </style>
+</head>
+<body>
+
+ <!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="navbar-logo"><i class="fas fa-car"></i> DriveConnect</a>
+    <div class="nav-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="blog.html">Blog</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <a href="index.html" class="mobile-logo"><i class="fas fa-car"></i> DriveConnect</a>
+    <span class="close-btn" id="closeMenu"><i class="fas fa-times"></i></span>
+  </div>
+  <div class="mobile-links">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#how-it-works">How It Works</a>
+    <a href="index.html#reviews">Reviews</a>
+    <a href="blog.html">Blog</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</div>
+
+<header class="page-header"></header>
+
+<section class="container">
+  <div class="blog-grid" id="blog-grid"></div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <h2><i class="fas fa-car"></i> DriveConnect</h2>
+      <p>Premium car care services at your doorstep. Making your car shine like never before.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Services</h3>
+      <a href="#">Exterior Wash</a>
+      <a href="#">Interior Detailing</a>
+      <a href="#">Exterior Detailing</a>
+      <a href="#">Full Car Service</a>
+    </div>
+    <div class="footer-column">
+      <h3>Company</h3>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-column">
+      <h3>Support</h3> 
+      <a href="#">Help Center</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Live Chat</a>
+      <a href="#">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 DriveConnect. Designed with <i class="fas fa-heart"></i> | All rights reserved.</div>
+</footer>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+  // Blogs
+  const blogs = [
+    {id:1,title:"Top 10 Car Maintenance Tips for 2024",date:"March 15, 2024",author:"John Smith",excerpt:"Keep your vehicle in perfect condition with these expert maintenance tips to ensure safety, performance, and longevity.",icon:"fas fa-car-wash"},
+    {id:2,title:"Top 5 Safety Checks Before a Long Road Trip",date:"Feb 10, 2024",author:"Sarah Johnson",excerpt:"Long drives can be risky without proper preparation. Follow these checks to ensure safety on the road.",icon:"fas fa-snowflake"},
+    {id:3,title:"Must-Have Car Accessories for 2025",date:"Jan 20, 2024",author:"Alex Brown",excerpt:"Modern cars can be transformed with simple accessories. Here’s a list of the most useful tools for 2025.",icon:"fas fa-shield-alt"},
+    {id:4,title:"Best Cars for Families in 2025",date:"Jan 5, 2024",author:"Mike Taylor",excerpt:"Family cars should be safe, spacious, and fuel-efficient. We reviewed the top vehicles for 2025.",icon:"fas fa-tools"},
+    {id:5,title:"DIY Car Detailing Tips",date:"Jan 5, 2024",author:"Mike Taylor",excerpt:"Save money and keep your car shining with these do-it-yourself detailing tricks used by professionals.",icon:"fas fa-tools"},
+    {id:6,title:"DIY Car Detailing Tips",date:"Jan 5, 2024",author:"Mike Taylor",excerpt:"Save money and keep your car shining with these do-it-yourself detailing tricks used by professionals.",icon:"fas fa-tools"}
+  ];
+
+  const blogGrid = document.getElementById("blog-grid");
+  blogs.forEach(blog => {
+    const card = document.createElement("div");
+    card.className="blog-card";
+    card.innerHTML=`
+      <div class="blog-image"><i class="${blog.icon}"></i></div>
+      <div class="blog-content">
+        <div class="blog-meta"><i class="fas fa-calendar"></i> ${blog.date} • ${blog.author}</div>
+        <h2 class="blog-title">${blog.title}</h2>
+        <p class="blog-excerpt">${blog.excerpt}</p>
+        <a href="blog-post.html?id=${blog.id}" class="read-more">Read More</a>
+      </div>`;
+    blogGrid.appendChild(card);
+  });
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  hamburger.addEventListener("click", () => mobileMenu.classList.add("active"));
+  closeMenu.addEventListener("click", () => mobileMenu.classList.remove("active"));
+
+  // Back to top button
+  const backToTop = document.getElementById("backToTop");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) backToTop.classList.add("show");
+    else backToTop.classList.remove("show");
+  });
+  backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+</body>
+</html>

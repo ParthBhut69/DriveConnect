@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveConnect Blog Post</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family:'Inter', sans-serif; background:#f8fafc; margin:0; padding:20px; color:#1f2937; line-height:1.6; }
+    .container { max-width:900px; margin:auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); }
+    .post-meta { color:#6b7280; font-size:0.9rem; margin-bottom:10px; display:flex; gap:10px; }
+    h1 { margin-bottom:20px; }
+    .post-content { line-height:1.6; color:#374151; }
+    .lead { font-size:1.2rem; font-weight:500; color:#4b5563; }
+    .tip-box { display:flex; align-items:flex-start; gap:1rem; background:#f1f5f9; padding:1rem; border-radius:12px; margin:1.5rem 0; }
+    .tip-icon { width:40px; height:40px; background:linear-gradient(135deg,#3b82f6,#1d4ed8); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; }
+    .conclusion-box { background:#eff6ff; border-left:4px solid #3b82f6; padding:1.5rem; margin:2rem 0; border-radius:8px; }
+    .post-tags { margin:2rem 0; }
+    .tag { display:inline-block; background:#e0e7ff; color:#3730a3; padding:0.4rem 0.8rem; border-radius:20px; margin:0.25rem; font-size:0.85rem; }
+    .back-btn { display:inline-block; margin-bottom:20px; padding:10px 15px; background:#3b82f6; color:#fff; border-radius:8px; text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+  
+  <div class="post-meta">
+    <div><i class="fas fa-calendar"></i> <span id="post-date"></span></div>
+    <div><i class="fas fa-user"></i> <span id="post-author"></span></div>
+  </div>
+  
+  <h1 id="post-title"></h1>
+  <p id="post-subtitle"></p>
+  
+  <div class="post-content" id="post-content"></div>
+  
+  <div class="post-tags" id="post-tags"></div>
+</div>
+
+<script>
+  // All blogs
+  const blogs = [
+    {
+      id: 1,
+      title: "Top 10 Car Maintenance Tips for 2025",
+      date: "March 15, 2025",
+      author: "John Smith",
+      subtitle: "Keep your car running smoothly and maintain its value with these essential maintenance tips.",
+      content: `
+        <p class="lead">Proper car maintenance ensures safety, reliability, and longevity. From engine care to tire checks, small habits can prevent costly repairs.</p>
+        <h2>Regular Oil Changes</h2><p>Oil lubricates engine parts. Change it every 5,000–7,500 miles.</p>
+        <h2>Check Tire Pressure & Rotate Tires</h2><p>Maintain optimal pressure and rotate every 6,000 miles.</p>
+        <h2>Brake Maintenance</h2><p>Inspect brakes regularly for wear and replace pads as needed.</p>
+        <h2>Battery Check</h2><p>Clean terminals and test voltage; replace older batteries.</p>
+        <h2>Fluid Levels</h2><p>Monitor coolant, brake fluid, windshield washer fluid.</p>
+        <h2>Air Filter Replacement</h2><p>Replace every 12,000 miles to improve engine efficiency.</p>
+        <h2>Lights Check</h2><p>Ensure headlights, brake lights, and turn signals work properly.</p>
+        <h2>Windshield & Wipers</h2><p>Replace wipers every 6–12 months; repair cracks promptly.</p>
+        <h2>Exhaust System Inspection</h2><p>Check for leaks or unusual noises.</p>
+        <h2>Professional Servicing</h2><p>Schedule yearly full-service inspection.</p>
+        <div class="conclusion-box"><h3>Conclusion</h3><p>Regular maintenance is an investment that protects your car’s performance, safety, and value.</p></div>
+      `,
+      tags: ["Maintenance", "Safety", "2025"]
+    },
+    {
+      id: 2,
+      title: "Top 5 Safety Checks Before a Long Road Trip",
+      date: "February 20, 2025",
+      author: "Sarah Johnson",
+      subtitle: "Ensure your vehicle is road-trip ready with these essential safety checks.",
+      content: `
+        <p class="lead">Long drives can be risky without proper preparation. Follow these checks to ensure safety on the road.</p>
+        <h2>Checklist</h2>
+        <ul>
+          <li>Tires: Check tread depth and pressure. Replace worn-out tires.</li>
+          <li>Brakes: Test responsiveness and inspect pads and rotors.</li>
+          <li>Lights & Signals: Ensure all headlights, taillights, and indicators are functional.</li>
+          <li>Fluids: Top up engine oil, coolant, windshield washer, and brake fluid.</li>
+          <li>Emergency Kit: Include first aid, spare tire, jack, jumper cables, and flashlight.</li>
+        </ul>
+        <div class="conclusion-box"><h3>Conclusion</h3><p>A few minutes of preparation can prevent accidents and vehicle breakdowns during road trips.</p></div>
+      `,
+      tags: ["Safety", "Road Trip", "Checklist"]
+    },
+    {
+      id: 3,
+      title: "Must-Have Car Accessories for 2025",
+      date: "January 10, 2025",
+      author: "Alex Brown",
+      subtitle: "Discover the latest gadgets and tools to enhance comfort, safety, and convenience while driving.",
+      content: `
+        <p class="lead">Modern cars can be transformed with simple accessories. Here’s a list of the most useful tools for 2025.</p>
+        <ul>
+          <li>Dash Cam: Record your trips and protect against insurance fraud.</li>
+          <li>Phone Mount & Wireless Charger: Keep your phone secure and charged.</li>
+          <li>Portable Tire Inflator: Quickly inflate tires on the go.</li>
+          <li>Car Vacuum Cleaner: Keep interiors clean effortlessly.</li>
+          <li>Bluetooth OBD Scanner: Monitor engine diagnostics from your smartphone.</li>
+          <li>Seat Cushions & Sun Shades: Improve comfort and protect interiors.</li>
+        </ul>
+        <div class="conclusion-box"><h3>Conclusion</h3><p>These small additions improve safety, comfort, and efficiency, making every drive more enjoyable.</p></div>
+      `,
+      tags: ["Technology", "Accessories", "2025"]
+    },
+    {
+      id: 4,
+      title: "Best Cars for Families in 2025",
+      date: "December 5, 2024",
+      author: "Mike Taylor",
+      subtitle: "Choosing a family-friendly car requires considering safety, space, and comfort. Here’s our top list for 2025.",
+      content: `
+        <p class="lead">Family cars should be safe, spacious, and fuel-efficient. We reviewed the top vehicles for 2025.</p>
+        <ul>
+          <li>Honda CR-V: Reliable, fuel-efficient, spacious cabin, and top safety ratings.</li>
+          <li>Toyota Highlander: Comfortable for long trips, advanced safety tech, flexible seating.</li>
+          <li>Kia Sorento: Affordable, stylish, with plenty of cargo space.</li>
+          <li>Hyundai Palisade: Luxury features, great interior, perfect for large families.</li>
+        </ul>
+        <div class="conclusion-box"><h3>Conclusion</h3><p>Selecting the right family car improves travel comfort and ensures peace of mind. Consider safety, space, and features before deciding.</p></div>
+      `,
+      tags: ["Lifestyle", "Family", "Reviews"]
+    }
+  ];
+
+  // Get blog id from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const blogId = parseInt(urlParams.get("id"));
+  const blog = blogs.find(b => b.id === blogId);
+
+  if(blog){
+    document.title = blog.title + " - DriveConnect";
+    document.getElementById("post-title").innerText = blog.title;
+    document.getElementById("post-subtitle").innerText = blog.subtitle;
+    document.getElementById("post-date").innerText = blog.date;
+    document.getElementById("post-author").innerText = blog.author;
+    document.getElementById("post-content").innerHTML = blog.content;
+
+    const tagContainer = document.getElementById("post-tags");
+    blog.tags.forEach(tag => {
+      const span = document.createElement("span");
+      span.className = "tag";
+      span.innerText = tag;
+      tagContainer.appendChild(span);
+    });
+  } else {
+    document.getElementById("post-content").innerHTML = "<p>Blog not found.</p>";
+  }
+</script>
+
+</body>
+</html>
