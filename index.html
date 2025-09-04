@@ -753,6 +753,195 @@ header#home .w-full.md\:w-1\/2 {
 
 
   </style>
+  <style>
+  /* Floating chat button */
+  #chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1e40af;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+    z-index: 999;
+  }
+  #chat-button:hover { transform: scale(1.1); }
+
+  /* Chat window */
+  #chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+  }
+  #chat-header {
+    background: #1e40af;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .message {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    word-wrap: break-word;
+  }
+  .bot {
+    align-self: flex-start;
+    background: #f0f0f0;
+    color: #111;
+    border-top-left-radius: 0;
+  }
+  .user {
+    align-self: flex-end;
+    background: #1e40af;
+    color: #fff;
+    border-top-right-radius: 0;
+  }
+  #chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+  #chat-input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+  }
+  #send-btn {
+    background: #1e40af;
+    color: #fff;
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+  }
+</style>
+
+<!-- Floating Chat Button -->
+<button id="chat-button"><i class="fas fa-headset"></i></button>
+
+
+<!-- Chat Window -->
+<div id="chat-window">
+  <div id="chat-header">
+    DriveConnect Bot
+    <span style="cursor:pointer;" id="close-chat">✖</span>
+  </div>
+  <div id="chat-messages">
+    <div class="message bot"><b>Bot:</b> Hi! How can I help you today?</div>
+  </div>
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Type a message..." />
+    <button id="send-btn">➤</button>
+  </div>
+</div>
+
+<script>
+  const chatBtn = document.getElementById('chat-button');
+  const chatWin = document.getElementById('chat-window');
+  const closeChat = document.getElementById('close-chat');
+  const sendBtn = document.getElementById('send-btn');
+  const chatInput = document.getElementById('chat-input');
+  const chatMessages = document.getElementById('chat-messages');
+
+  // Toggle chat
+  chatBtn.addEventListener('click', () => {
+    chatWin.style.display = 'flex';
+    chatBtn.style.display = 'none';
+  });
+  closeChat.addEventListener('click', () => {
+    chatWin.style.display = 'none';
+    chatBtn.style.display = 'block';
+  });
+
+  // Hugging Face API
+  const HF_API_URL = "https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium";
+  const HF_API_KEY = "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"; // 🔑 Replace with your Hugging Face API key
+
+  async function getAIResponse(message) {
+    const res = await fetch(HF_API_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${HF_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ inputs: message })
+    });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      return data[0]?.generated_text || "Sorry, I didn’t get that.";
+    } else {
+      return data?.generated_text || "Sorry, I didn’t get that.";
+    }
+  }
+
+  // Append message
+  function appendMessage(text, sender) {
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `message ${sender}`;
+    msgDiv.innerHTML = `<b>${sender === "user" ? "You" : "Bot"}:</b> ${text}`;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Send message
+  async function sendMessage() {
+    const msg = chatInput.value.trim();
+    if (!msg) return;
+    appendMessage(msg, "user");
+    chatInput.value = "";
+
+    // Typing indicator
+    const typing = document.createElement("div");
+    typing.className = "message bot";
+    typing.innerHTML = "<i>Bot is typing...</i>";
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+      const reply = await getAIResponse(msg);
+      typing.remove();
+      appendMessage(reply, "bot");
+    } catch (err) {
+      typing.remove();
+      appendMessage("Error fetching response.", "bot");
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+
+
 </head>
 <body class="bg-blue-50 text-slate-800">
 
@@ -771,6 +960,7 @@ header#home .w-full.md\:w-1\/2 {
       <a href="#process" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">How It Works</a>
       <a href="#testimonials" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Reviews</a>
       <a href="#contact" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Contact</a>
+      <a href="blog.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Blogs</a>
       <a href="service_provider.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Become Service Provider</a>
       <a href="register.html" class="ml-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl">
         <i class="fas fa-sign-in mr-2"></i>Sign In
@@ -794,6 +984,7 @@ header#home .w-full.md\:w-1\/2 {
     <a href="#process" onclick="closeMobileMenu()">How It Works</a>
     <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="blog.html" onclick="closeMobileMenu()">Blogs</a>
     <a href="service_provider.html" onclick="closeMobileMenu()">Become Service Provider</a>
     <a href="booking.html" onclick="closeMobileMenu()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
       <i class="fas fa-calendar-check mr-2"></i>Book Now
@@ -943,7 +1134,7 @@ header#home .w-full.md\:w-1\/2 {
 
 
           <!-- Submit -->
-          <form action="#search.html" method="GET">
+          <form action="search.html" method="GET">
   <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
     <i class="fas fa-search mr-2"></i> Search Now
   </button>
