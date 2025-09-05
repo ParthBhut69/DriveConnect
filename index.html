@@ -846,9 +846,6 @@ header#home .w-full.md\:w-1\/2 {
 
 <!-- Floating Chat Button -->
 <button id="chat-button"><i class="fas fa-headset"></i></button>
-
-
-<!-- Chat Window -->
 <div id="chat-window">
   <div id="chat-header">
     DriveConnect Bot
@@ -857,11 +854,117 @@ header#home .w-full.md\:w-1\/2 {
   <div id="chat-messages">
     <div class="message bot"><b>Bot:</b> Hi! How can I help you today?</div>
   </div>
+
+  <!-- Predefined Questions -->
+  <div id="quick-questions">
+    <button class="quick-btn">What services do you offer?</button>
+    <button class="quick-btn">How do I book a car wash?</button>
+    <button class="quick-btn">Do you provide doorstep service?</button>
+    <button class="quick-btn">What is the price for detailing?</button>
+    <button class="quick-btn">How long does a full service take?</button>
+    <button class="quick-btn">Do you use eco-friendly products?</button>
+  </div>
+
   <div id="chat-input-area">
     <input type="text" id="chat-input" placeholder="Type a message..." />
     <button id="send-btn">➤</button>
   </div>
 </div>
+
+<style>
+  /* Floating button */
+  #chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1d4ed8;
+    color: #fff;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1500;
+  }
+
+  #chat-window {
+    width: 300px;
+    height: 420px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    z-index: 2000;
+  }
+  #chat-header {
+    background: #1d4ed8;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  .message { margin: 6px 0; }
+  .message.user { text-align: right; color: #ffffff; }
+  .message.bot { text-align: left; color: #333; }
+  #chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 5px;
+  }
+  #chat-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+  }
+  #send-btn {
+    background: #1d4ed8;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background: #f9fafb;
+  }
+  .quick-btn {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .quick-btn:hover {
+    background: #e0e7ff;
+  }
+</style>
 
 <script>
   const chatBtn = document.getElementById('chat-button');
@@ -870,37 +973,21 @@ header#home .w-full.md\:w-1\/2 {
   const sendBtn = document.getElementById('send-btn');
   const chatInput = document.getElementById('chat-input');
   const chatMessages = document.getElementById('chat-messages');
+  const quickBtns = document.querySelectorAll('.quick-btn');
 
-  // Toggle chat
-  chatBtn.addEventListener('click', () => {
-    chatWin.style.display = 'flex';
-    chatBtn.style.display = 'none';
-  });
-  closeChat.addEventListener('click', () => {
-    chatWin.style.display = 'none';
-    chatBtn.style.display = 'block';
-  });
+  // Predefined answers
+  const answers = {
+    "what services do you offer?": "We offer exterior wash, interior cleaning, detailing, polishing, ceramic coating, and full car servicing.",
+    "how do i book a car wash?": "You can book easily through our website by selecting your service and preferred time slot.",
+    "do you provide doorstep service?": "Yes! We provide doorstep car washing and detailing services at your convenience.",
+    "what is the price for detailing?": "Our detailing packages start from ₹1499 depending on your car type and chosen service.",
+    "how long does a full service take?": "A complete car wash and detailing takes 1.5 to 2 hours on average.",
+    "do you use eco-friendly products?": "Yes! We use eco-friendly and safe cleaning products to ensure the best care for your car and the environment."
+  };
 
-  // Hugging Face API
-  const HF_API_URL = "https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium";
-  const HF_API_KEY = "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"; // 🔑 Replace with your Hugging Face API key
-
-  async function getAIResponse(message) {
-    const res = await fetch(HF_API_URL, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${HF_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ inputs: message })
-    });
-    const data = await res.json();
-    if (Array.isArray(data)) {
-      return data[0]?.generated_text || "Sorry, I didn’t get that.";
-    } else {
-      return data?.generated_text || "Sorry, I didn’t get that.";
-    }
-  }
+  // Your Groq API key (⚠️ move this server-side in production)
+  const GROQ_API_KEY = "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";
+  const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
   // Append message
   function appendMessage(text, sender) {
@@ -911,11 +998,42 @@ header#home .w-full.md\:w-1\/2 {
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Send message
-  async function sendMessage() {
-    const msg = chatInput.value.trim();
-    if (!msg) return;
-    appendMessage(msg, "user");
+  // Groq API call
+  async function fetchGroqResponse(msg) {
+    try {
+      const res = await fetch(GROQ_URL, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${GROQ_API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "mixtral-8x7b-32768",
+          messages: [{ role: "user", content: msg }]
+        })
+      });
+
+      const data = await res.json();
+      return data.choices?.[0]?.message?.content || "Sorry, I couldn’t generate a response.";
+    } catch (err) {
+      return "Error connecting to AI service.";
+    }
+  }
+
+  async function getBotResponse(msg) {
+    const lowerMsg = msg.toLowerCase();
+    if (answers[lowerMsg]) {
+      return answers[lowerMsg];
+    } else {
+      return await fetchGroqResponse(msg);
+    }
+  }
+
+  // Send user message
+  async function sendMessage(msg) {
+    const message = msg || chatInput.value.trim();
+    if (!message) return;
+    appendMessage(message, "user");
     chatInput.value = "";
 
     // Typing indicator
@@ -925,21 +1043,34 @@ header#home .w-full.md\:w-1\/2 {
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    try {
-      const reply = await getAIResponse(msg);
-      typing.remove();
-      appendMessage(reply, "bot");
-    } catch (err) {
-      typing.remove();
-      appendMessage("Error fetching response.", "bot");
-    }
+    const reply = await getBotResponse(message);
+    typing.remove();
+    appendMessage(reply, "bot");
   }
 
-  sendBtn.addEventListener('click', sendMessage);
+  sendBtn.addEventListener('click', () => sendMessage());
   chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessage();
   });
+
+  // Quick questions
+  quickBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sendMessage(btn.textContent);
+    });
+  });
+
+  // Toggle chat
+  chatBtn.addEventListener('click', () => {
+    chatWin.style.display = 'flex';
+    chatBtn.style.display = 'none';
+  });
+  closeChat.addEventListener('click', () => {
+    chatWin.style.display = 'none';
+    chatBtn.style.display = 'flex';
+  });
 </script>
+
 
 
 </head>
