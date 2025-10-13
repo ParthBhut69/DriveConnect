@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DriveConnect | Premium Car Care</title>
+  <title>DriveConnect | Find Nearby Car Wash & Service Centers</title>
+  <meta name="description" content="DriveConnect helps you find and book nearby car washing, detailing, and car service centers instantly. Compare services, read reviews, and book your car service hassle-free.">
+  <meta name="keywords" content="car wash, car service, nearby car wash, car detailing, car cleaning, car maintenance, car service booking, car washing platform">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="DriveConnect Team">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -1092,7 +1096,7 @@ header#home .w-full.md\:w-1\/2 {
       <a href="#testimonials" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Reviews</a>
       <a href="#contact" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Contact</a>
       <a href="blog.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Blogs</a>
-      <a href="service_provider.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Become Service Provider</a>
+      <!-- <a href="service_provider.html" class="text-gray-200 hover:text-blue-300 transition-colors duration-300 font-medium">Become Service Provider</a> -->
       <a href="register.html" class="ml-2 px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl">
         <i class="fas fa-sign-in mr-2"></i>Sign In
       </a>
@@ -1116,7 +1120,7 @@ header#home .w-full.md\:w-1\/2 {
     <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
     <a href="blog.html" onclick="closeMobileMenu()">Blogs</a>
-    <a href="service_provider.html" onclick="closeMobileMenu()">Become Service Provider</a>
+    <!-- <a href="service_provider.html" onclick="closeMobileMenu()">Become Service Provider</a> -->
     <a href="booking.html" onclick="closeMobileMenu()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
       <i class="fas fa-calendar-check mr-2"></i>Book Now
     </a>
@@ -1718,9 +1722,116 @@ header#home .w-full.md\:w-1\/2 {
   }
 </style>
 
+<!-- About Us / Our Mission -->
+<div class="bg-white text-gray-800">
+
+  <!-- Tabs -->
+  <div class="flex justify-center border-b border-gray-200">
+    <button class="px-6 py-3 text-blue-600 font-semibold border-b-2 border-blue-600 focus:outline-none" id="tab-vision">OUR VISION</button>
+    <button class="px-6 py-3 text-gray-500 hover:text-blue-600 focus:outline-none" id="tab-values">OUR MISSION</button>
+    <button class="px-6 py-3 text-gray-500 hover:text-blue-600 focus:outline-none" id="tab-network">OUR NETWORK</button>
+  </div>
+
+  <!-- Content Wrapper -->
+  <div class="max-w-6xl mx-auto px-6 py-12">
+
+    <!-- OUR VISION -->
+    <div id="content-vision" class="tab-content">
+      <h2 class="text-3xl font-semibold mb-4 text-center">Our Vision</h2>
+      <p class="text-gray-600 text-lg leading-relaxed mb-8 text-center">
+        DriveConnect is an innovative online platform designed to help car owners find, compare, and book nearby car wash and car service centers in just a few clicks. We bring together trusted auto detailing, car maintenance, and vehicle cleaning providers across India — making your car care experience smooth, transparent, and reliable.
+        <br><br>
+        At DriveConnect, we understand the value of your time and your vehicle. That’s why we provide real-time access to verified car wash professionals, service providers, and detailing experts near you. Whether it’s a quick car wash, a full interior cleaning, or a scheduled car maintenance service, DriveConnect ensures you get the best service at the best price — anytime, anywhere.
+      </p>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+        <div class="w-full md:w-1/2">
+          <img src="https://images.unsplash.com/photo-1515920010264-6b9b41a0b5a6" alt="Car Service Vision" class="rounded-xl shadow-lg w-full object-cover">
+        </div>
+        <div class="w-full md:w-1/2">
+          <video class="rounded-xl shadow-lg w-full" controls>
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUR MISSION -->
+    <div id="content-values" class="tab-content hidden">
+      <h2 class="text-3xl font-semibold mb-10 text-center">Our Mission</h2>
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="w-full md:w-1/2">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" class="rounded-xl shadow-lg w-full object-cover" alt="Core Values">
+        </div>
+        <div class="w-full md:w-1/2 text-center md:text-left">
+          <p class="text-gray-600 text-lg leading-relaxed mb-6">
+            Our mission is to simplify the way you care for your car. We aim to create a digital bridge between customers and service providers, making car servicing faster, smarter, and more accessible across all cities in India.
+          </p>
+          <h3 class="text-2xl font-semibold mb-4 text-blue-600">Why Choose DriveConnect?</h3>
+          <ul class="text-gray-700 space-y-2">
+            <li>✅ Easy online car wash booking and comparison</li>
+            <li>✅ Verified car service centers and professional partners</li>
+            <li>✅ Transparent pricing and real customer reviews</li>
+            <li>✅ Available 24/7 to help you locate car cleaning and detailing services near you</li>
+          </ul>
+          <p class="text-gray-600 text-lg leading-relaxed mt-6">
+            DriveConnect is not just a booking platform — it’s your trusted car care companion, helping you keep your vehicle clean, well-maintained, and road-ready.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  
+  <!-- OUR NETWORK -->
+<div id="content-network" class="tab-content hidden">
+  <h2 class="text-3xl font-semibold mb-10 text-center">Our Network</h2>
+
+  <div class="flex flex-col md:flex-row items-center gap-8">
+    <!-- Text Left -->
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <p class="text-gray-600 text-lg leading-relaxed mb-6">
+        DriveConnect partners with top-rated car wash and service providers across India to ensure 
+        consistent quality and customer satisfaction. Our growing network connects thousands of drivers 
+        with reliable car care solutions daily.
+      </p>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        From metro cities to developing towns, our goal is to make premium car care services accessible 
+        and trustworthy — connecting users with verified workshops, detailers, and auto experts wherever they are.
+      </p>
+    </div>
+
+    <!-- Image Right -->
+    <div class="w-full md:w-1/2">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+           class="rounded-xl shadow-lg w-full object-cover"
+           alt="Network">
+    </div>
+  </div>
+</div>
 
 
-<!-- Become Service Provider Section
+  </div>
+</div>
+
+<!-- Tab Switching Script -->
+<script>
+  const tabs = document.querySelectorAll('[id^="tab-"]');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600'));
+      tab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+
+      contents.forEach(c => c.classList.add('hidden'));
+      document.getElementById('content-' + tab.id.split('-')[1]).classList.remove('hidden');
+    });
+  });
+</script>
+<!-- About Us End Here -->
+
+
+<!-- Become Service Provider  -->
 <section class="bg-slate-800 text-white py-20 text-center relative overflow-hidden">
   <div class="relative z-10 max-w-4xl mx-auto px-6">
     <h2 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">Be Our Partner.<br>Drive Your Business Further.</h2>
@@ -1752,7 +1863,107 @@ header#home .w-full.md\:w-1\/2 {
       </div>
     </div>
   </div>
-</section> -->
+</section> 
+
+
+ <!-- FAQ Section -->
+<section id="faq" class="bg-gray-50 py-16">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-blue-600 mb-10">Frequently Asked Questions</h2>
+
+    <div class="space-y-6">
+
+      <!-- Question 1 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <button class="w-full flex justify-between items-center p-5 text-left text-gray-800 font-semibold hover:text-blue-600 focus:outline-none faq-toggle">
+          <span>What is DriveConnect and how does it work?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden px-5 pb-5 text-gray-600 leading-relaxed">
+          DriveConnect is an online platform that connects you with nearby verified car wash and service centers. Simply enter your location, compare service providers, check reviews and prices, and book your car service instantly.
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <button class="w-full flex justify-between items-center p-5 text-left text-gray-800 font-semibold hover:text-blue-600 focus:outline-none faq-toggle">
+          <span>Is DriveConnect available in all cities?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden px-5 pb-5 text-gray-600 leading-relaxed">
+          Yes! DriveConnect is expanding rapidly across India. We currently operate in major metro cities and are continuously adding new verified service providers in tier-2 and tier-3 cities.
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <button class="w-full flex justify-between items-center p-5 text-left text-gray-800 font-semibold hover:text-blue-600 focus:outline-none faq-toggle">
+          <span>How do I know if a service center is verified?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden px-5 pb-5 text-gray-600 leading-relaxed">
+          Each service provider listed on DriveConnect undergoes a strict verification process. We verify credentials, service quality, customer feedback, and pricing transparency before onboarding them.
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <button class="w-full flex justify-between items-center p-5 text-left text-gray-800 font-semibold hover:text-blue-600 focus:outline-none faq-toggle">
+          <span>Can I cancel or reschedule my booking?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden px-5 pb-5 text-gray-600 leading-relaxed">
+          Absolutely! You can easily cancel or reschedule your booking through your DriveConnect dashboard or by contacting the service provider directly. Cancellation policies may vary depending on the partner.
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <button class="w-full flex justify-between items-center p-5 text-left text-gray-800 font-semibold hover:text-blue-600 focus:outline-none faq-toggle">
+          <span>What types of car services can I book on DriveConnect?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="hidden px-5 pb-5 text-gray-600 leading-relaxed">
+          You can book various services including car washing, interior detailing, car polishing, AC servicing, oil changes, and full car maintenance packages — all through trusted local professionals.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Toggle Script -->
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('svg');
+
+      // Close all other FAQs
+      document.querySelectorAll('.faq-toggle').forEach(btn => {
+        if (btn !== button) {
+          btn.nextElementSibling.classList.add('hidden');
+          btn.querySelector('svg').classList.remove('rotate-180');
+        }
+      });
+
+      // Toggle current FAQ
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    });
+  });
+</script>
+
 
 <!-- Contact -->
 <section id="contact" class="py-20 bg-white relative">
